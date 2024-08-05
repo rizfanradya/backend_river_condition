@@ -1,17 +1,36 @@
 from sqlalchemy.orm import Session
 from models.data import Data
+from models.image import Image
 from schemas.data import DataSchema
-from typing import Optional
+from typing import Optional, List
 from sqlalchemy import or_
-from utils import send_error_response
+from utils import send_error_response, file_management
+from fastapi import UploadFile, File
+import os
 
 
-def CreateData(session: Session, new_data: DataSchema):
+def CreateData(session: Session, new_data: DataSchema, image: List[UploadFile] = File(...)):
     try:
+        MAX_FILE_SIZE_BYTES = 2 * 1024 * 1024  # 2mb
+        allowed_content_types = ['image/jpeg', 'image/png']
+        for file in image:
+            if file.content_type not in allowed_content_types:
+                send_error_response(
+                    'Wrong file type, only accept jpeg or png',
+                    'Wrong file type, only accept jpeg or png'
+                )
+            if os.fstat(file.file.fileno()).st_size > MAX_FILE_SIZE_BYTES:
+                send_error_response(
+                    'File too large, only accept file below 2MB',
+                    'File too large, only accept file below 2MB'
+                )
+
         new_data_info = Data(**new_data.dict())
         session.add(new_data_info)
         session.commit()
         session.refresh(new_data_info)
+        query_image = session.query(Image).all()
+        file_management(query_image, 'uploads', 'image')
         return new_data_info
     except Exception as error:
         send_error_response(

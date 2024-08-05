@@ -13,4 +13,3 @@ class Data(Base):
     datetime = Column(DateTime)
     location = Column(String(length=255))
     information = Column(Text)
-    image = Column(String(length=255))
