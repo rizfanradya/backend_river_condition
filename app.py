@@ -10,8 +10,8 @@ import routers.role as role
 
 
 app = FastAPI(
-    title="App Hadish",
-    description="API Hadish Documentations"
+    title="App River Condition",
+    description="API River Condition Documentations"
 )
 
 app.add_middleware(
