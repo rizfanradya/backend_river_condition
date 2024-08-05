@@ -59,7 +59,7 @@ def create_refresh_token(subject: Union[str, Any], expires_delta=None):
 
 def file_management(database, folder, db_column_name):
     db_list_files = [
-        data[db_column_name] for data in database if data[db_column_name]
+        getattr(data, db_column_name) for data in database if getattr(data, db_column_name)
     ]
     local_list_files = os.listdir(folder)
     files_to_delete = [f for f in local_list_files if f not in db_list_files]
