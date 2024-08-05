@@ -9,4 +9,4 @@ class Image(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     data_id = Column(Integer, ForeignKey("data.id"))
-    image = Column(String(length=255))
+    image = Column(String(length=255), unique=True)
