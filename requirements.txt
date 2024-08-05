@@ -1,0 +1,16 @@
+fastapi
+fastapi_utils
+uvicorn
+pymysql
+passlib
+pyjwt
+sqlalchemy
+pandas
+python-multipart
+cryptography
+alembic
+email-validator
+password-validator
+pytz
+phonenumbers
+openpyxl
