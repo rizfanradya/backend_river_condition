@@ -16,7 +16,7 @@ def CreateData(session: Session, new_data: DataSchema):
     except Exception as error:
         send_error_response(
             str(error),
-            f'error when create data'
+            f'user id or river id not found'
         )
 
 
@@ -56,7 +56,7 @@ def UpdateData(session: Session, id: int, info_update: DataSchema):
     except Exception as error:
         send_error_response(
             str(error),
-            f'error when update data'
+            f'user id or river id not found'
         )
 
 
@@ -64,4 +64,4 @@ def DeleteData(session: Session, id: int):
     query = GetDataById(session, id)
     session.delete(query)
     session.commit()
-    return f'Data id "{id}" deleted success'
+    return {"detail": f'Data id "{id}" deleted success'}

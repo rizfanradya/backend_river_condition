@@ -64,4 +64,4 @@ def DeleteChoice(session: Session, id: int):
     query = GetChoiceById(session, id)
     session.delete(query)
     session.commit()
-    return f'Choice id "{id}" deleted success'
+    return {"detail": f'Choice id "{id}" deleted success'}

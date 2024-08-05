@@ -64,4 +64,4 @@ def DeleteRole(session: Session, id: int):
     role_info = GetRoleById(session, id)
     session.delete(role_info)
     session.commit()
-    return f'Role id "{id}" deleted success'
+    return {"detail": f'Role id "{id}" deleted success'}
