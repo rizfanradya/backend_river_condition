@@ -11,6 +11,7 @@ from models.data import *
 from models.role import *
 from models.user import *
 from models.image import *
+from models.master import *
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
