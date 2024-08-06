@@ -5,6 +5,7 @@ from utils import SERVER_PORT, data_that_must_exist_in_the_database
 
 import routers.user as user
 import routers.data as data
+import routers.master as master
 import routers.choice as choice
 import routers.role as role
 
@@ -25,6 +26,7 @@ app.add_middleware(
 app.include_router(user.router, tags=["User API"], prefix="/api")
 app.include_router(role.router, tags=["Role API"], prefix="/api")
 app.include_router(data.router, tags=["Data API"], prefix="/api")
+app.include_router(master.router, tags=["Data API"], prefix="/api")
 app.include_router(choice.router, tags=["Choice API"], prefix="/api")
 
 
