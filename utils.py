@@ -84,33 +84,28 @@ def data_that_must_exist_in_the_database():
     from models.user import User
     from database import SessionLocal
     session = SessionLocal()
-    role_super_admin = session.query(Role).where(
-        Role.role == 'super administrator').first()
     role_admin = session.query(Role).where(
         Role.role == 'administrator').first()
     role_user = session.query(Role).where(Role.role == 'user').first()
-    if not role_super_admin:
-        session.add(Role(role='super administrator'))
-        session.commit()
     if not role_admin:
         session.add(Role(role='administrator'))
         session.commit()
     if not role_user:
         session.add(Role(role='user'))
         session.commit()
-    role_super_admin = session.query(Role).where(
-        Role.role == 'super administrator').first()
-    user_super_admin = session.query(User).where(
-        User.role_id == role_super_admin.id).first()  # type: ignore
-    if not user_super_admin:
-        encode_password = '@SuperAdmin123'.encode()
+    role_admin = session.query(Role).where(
+        Role.role == 'administrator').first()
+    user_admin = session.query(User).where(
+        User.role_id == role_admin.id).first()  # type: ignore
+    if not user_admin:
+        encode_password = '@Admin123'.encode()
         hash_password = hashlib.md5(encode_password).hexdigest()
         session.add(User(
-            username='superadmin',
+            username='admin',
             password=hash_password,
-            first_name='Super',
-            last_name='Admin',
-            role_id=role_super_admin.id,  # type: ignore
+            first_name='Admin',
+            last_name='01',
+            role_id=role_admin.id,  # type: ignore
             is_active=True
         ))
         session.commit()
