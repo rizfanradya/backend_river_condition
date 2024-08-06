@@ -26,7 +26,7 @@ app.add_middleware(
 app.include_router(user.router, tags=["User API"], prefix="/api")
 app.include_router(role.router, tags=["Role API"], prefix="/api")
 app.include_router(data.router, tags=["Data API"], prefix="/api")
-app.include_router(master.router, tags=["Data API"], prefix="/api")
+app.include_router(master.router, tags=["Master API"], prefix="/api")
 app.include_router(choice.router, tags=["Choice API"], prefix="/api")
 
 
