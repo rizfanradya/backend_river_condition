@@ -6,11 +6,7 @@ from sqlalchemy import pool
 from alembic import context
 from database import Base, DATABASE_URL
 
-from models.choice import *
-from models.data import *
-from models.role import *
 from models.user import *
-from models.image import *
 from models.master import *
 
 # this is the Alembic Config object, which provides
